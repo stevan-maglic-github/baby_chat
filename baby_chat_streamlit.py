@@ -84,8 +84,13 @@ def run_streamlit_chat():
             st.write(msg["content"])
  
     # Chat input
-    if user_input := st.chat_input("Type a message..."):
-        # Show user message
+    if user_input := st.chat_input("Type a message..."):    
+    ##### ADDED
+        if user_input.strip().lower() in ("quit", "exit", "q"):
+            print("\nGoodbye!")
+            break
+    #####     
+     # Show user message
         st.session_state.messages.append({"role": "user", "content": user_input})
         with st.chat_message("user"):
             st.write(user_input)
